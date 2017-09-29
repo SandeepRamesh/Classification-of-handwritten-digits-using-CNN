@@ -49,17 +49,32 @@ y_train_cat
 #Model building
 model = Sequential()
 
-#Convolution Layers
-model.add(Conv2D(32, (3, 3), activation='relu', input_shape=(28, 28, 1)))
-model.add(Conv2D(32, (3, 3), activation='relu'))
-model.add(MaxPool2D(pool_size=(2, 2)))
-model.add(Dropout(0.25))
-
-#Fully connected model
-model.add(Flatten())
-model.add(Dense(128, activation='relu'))
-model.add(Dropout(0.5))
-model.add(Dense(10, activation='softmax'))
+#Model Summary
+'''
+________________________________________________________________
+Layer (type)                 Output Shape              Param #   
+=================================================================
+conv2d_1 (Conv2D)            (None, 26, 26, 32)        320       
+_________________________________________________________________
+conv2d_2 (Conv2D)            (None, 24, 24, 32)        9248      
+_________________________________________________________________
+max_pooling2d_1 (MaxPooling2 (None, 12, 12, 32)        0         
+_________________________________________________________________
+dropout_1 (Dropout)          (None, 12, 12, 32)        0         
+_________________________________________________________________
+flatten_1 (Flatten)          (None, 4608)              0         
+_________________________________________________________________
+dense_1 (Dense)              (None, 128)               589952    
+_________________________________________________________________
+dropout_2 (Dropout)          (None, 128)               0         
+_________________________________________________________________
+dense_2 (Dense)              (None, 10)                1290      
+=================================================================
+Total params: 600,810
+Trainable params: 600,810
+Non-trainable params: 0
+_________________________________________________________________
+'''
 
 #Fitting the model
 model.compile(loss='categorical_crossentropy',optimizer='rmsprop',metrics=['accuracy'])
